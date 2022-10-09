@@ -52,8 +52,8 @@ def storeapi():
 @app.route('/api/v1.0/storeAPI/<item>', methods=['GET'])
 def searchAPI(item):
     g.db = connect_db()
-    #curs = g.db.execute("SELECT * FROM shop_items WHERE name=?", item) #The safe way to actually get data from db
-    curs = g.db.execute("SELECT * FROM shop_items WHERE name = '%s'" %item)
+    curs = g.db.execute("SELECT * FROM shop_items WHERE name=?", item) #The safe way to actually get data from db
+    #curs = g.db.execute("SELECT * FROM shop_items WHERE name = '%s'" %item)
     results = [dict(name=row[0], quantity=row[1], price=row[2]) for row in curs.fetchall()]
     g.db.close()
     return jsonify(results)
@@ -86,9 +86,12 @@ if __name__ == "__main__":
             c.execute('INSERT INTO shop_items VALUES("water", "40", "100")')
             c.execute('INSERT INTO shop_items VALUES("juice", "40", "110")')
             c.execute('INSERT INTO shop_items VALUES("candy", "100", "10")')
-            c.execute('INSERT INTO employees VALUES("itsjasonh", "{}")'.format(hash_pass("badword")))
-            c.execute('INSERT INTO employees VALUES("theeguy9", "{}")'.format(hash_pass("badpassword")))
-            c.execute('INSERT INTO employees VALUES("newguy29", "{}")'.format(hash_pass("pass123")))
+            #c.execute('INSERT INTO employees VALUES("itsjasonh", "{}")'.format(hash_pass("badword")))
+            #c.execute('INSERT INTO employees VALUES("theeguy9", "{}")'.format(hash_pass("badpassword")))
+            # c.execute('INSERT INTO employees VALUES("newguy29", "{}")'.format(hash_pass("pass123")))
+            c.execute('INSERT INTO employees VALUES("Administrator", "pass123")')
+
+
             connection.commit()
             connection.close()
 
